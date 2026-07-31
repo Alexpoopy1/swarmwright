@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+*.db
+*.db-journal
+.env
+sandbox-tmp
+coverage
+docs/screenshots

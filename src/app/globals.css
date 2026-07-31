@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  @apply bg-ink-950 text-stone-200 antialiased;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Thin scrollbars that fit the dark UI */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a372c transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #3a372c;
+  border-radius: 4px;
+}
+
+/* Markdown prose in chat */
+.prose-sw pre {
+  @apply bg-ink-900 border border-ink-700 rounded-md p-3 overflow-x-auto text-sm;
+}
+.prose-sw code {
+  @apply font-mono text-copper-300;
+}
+.prose-sw pre code {
+  @apply text-stone-200;
+}
+.prose-sw a {
+  @apply text-copper-400 underline;
+}
+.prose-sw ul {
+  @apply list-disc pl-5;
+}
+.prose-sw ol {
+  @apply list-decimal pl-5;
+}
+.prose-sw h1,
+.prose-sw h2,
+.prose-sw h3 {
+  @apply font-semibold text-stone-100 mt-4 mb-2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      # Change this! openssl rand -hex 32
+      SECRET_ENCRYPTION_KEY: ${SECRET_ENCRYPTION_KEY:-dev-only-insecure-key-change-me}
+      DATABASE_URL: ${DATABASE_URL:-file:/app/data/swarmwright.db}
+    volumes:
+      - swarm-data:/app/data
+
+  # Optional PostgreSQL — run with: docker compose --profile postgres up
+  # Then set DATABASE_URL=postgresql://swarm:swarm@db:5432/swarmwright
+  # and switch the datasource provider in prisma/schema.prisma to "postgresql".
+  db:
+    image: postgres:16-alpine
+    profiles: ["postgres"]
+    environment:
+      POSTGRES_USER: swarm
+      POSTGRES_PASSWORD: swarm
+      POSTGRES_DB: swarmwright
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  swarm-data:
+  pg-data:
